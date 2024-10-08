@@ -1,0 +1,21 @@
+[build]
+  publish = "build/frontend" # Adjust this to your build directory
+  command = "npm run build" # Command to build your app
+
+[[redirects]]
+  from = "/old-path"
+  to = "/new-path"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  force = true
+
+# Additional settings for headers, functions, etc.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Access-Control-Allow-Origin = "*"

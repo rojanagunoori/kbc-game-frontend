@@ -1,13 +1,17 @@
 
 
 
-import { useEffect, useState } from "react";
+import React, { useEffect, useState ,Suspense} from "react";
 import './App.css';
 import io from "socket.io-client";
-import Question from "./Question.js";
-import Loader from "./Loader.js";
-import Result from "./Result.js";
-import NameEntry from "./NameEntry.js";
+//import Question from "./Question.js";
+//import Loader from "./Loader.js";
+//import Result from "./Result.js";
+//import NameEntry from "./NameEntry.js";
+const Question = React.lazy(() => import("./Question.js"));
+const Loader = React.lazy(() => import("./Loader.js"));
+const Result = React.lazy(() => import("./Result.js"));
+const NameEntry = React.lazy(() => import("./NameEntry.js"));
 
 
 //const localhostUrl = "http://192.168.43.107:5000";
@@ -185,6 +189,63 @@ function App() {
 
     return (
         <div>
+        <h1>KBC Quiz Game</h1>
+        <Suspense fallback={<div>Loading...</div>}>
+            {stage === "nameEntry" ? (
+                <NameEntry onSubmitAnswer={handleNameEntry} />
+            ) : stage === "categorySelection" ? (
+                <div>
+                    <h2>Select Categories and Questions</h2>
+                    {categories.map(cat => (
+                        <div key={cat.name}>
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    checked={selectedCategories.includes(cat.name)}
+                                    onChange={() => handleCategoryChange(cat.name)}
+                                />
+                                {cat.label}
+                            </label>
+                        </div>
+                    ))}
+                    <h2>Number of Questions</h2>
+                    <input
+                        type="number"
+                        value={numQuestions}
+                        onChange={(e) => setNumQuestions(e.target.value)}
+                    />
+                    <h2>Timer Duration (seconds)</h2>
+                    <input
+                        type="number"
+                        value={timerDuration}
+                        onChange={(e) => setTimerDuration(e.target.value)}
+                    />
+                    <button onClick={startGame}>Start Game</button>
+                </div>
+            ) : (
+                <div>
+                    <h2>Time Left: {timer} seconds</h2>
+                    {currentQuestion ? (
+                        <Question 
+                            question={currentQuestion} 
+                            selectedAnswer={selectedAnswer} 
+                            setSelectedAnswer={setSelectedAnswer}
+                            submitAnswer={(answer) => socket.emit("answer", { answer })}
+                        />
+                    ) : (
+                        <Loader />
+                    )}
+                    {gameOver ? (
+                        <Result score={score} />
+                    ) : (
+                        message && <p className="result">{message}</p>
+                    )}
+                </div>
+            )}
+        </Suspense>
+    </div>
+        /*
+        <div>
     
             <h1>KBC Quiz Game</h1>
             <h2>Time Left: {timer} seconds</h2>
@@ -195,7 +256,7 @@ function App() {
                 setSelectedAnswer={setSelectedAnswer} // Pass function to set selected answer
                 submitAnswer={(answer) => socket.emit("answer", { answer })}
             />
-                /*<Question question={currentQuestion} submitAnswer={(answer) => socket.emit("answer", { answer })} />*/
+                /*<Question question={currentQuestion} submitAnswer={(answer) => socket.emit("answer", { answer })} /> end/
             ) : (
                 <Loader />
             )}
@@ -204,7 +265,8 @@ function App() {
             ) : (
                 message && <p className="result" >{message}</p>
             )}
-        </div>
+        </div>*/
+        
     );
 }
 

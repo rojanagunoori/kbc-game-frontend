@@ -4,10 +4,11 @@
   <source src="https://raw.githubusercontent.com/rojanagunoori/kbc-game-frontend/main/public/kbc-game.mp4" type="video/mp4">
 </video>
 
-![Screenshot 1](https://github.com/rojanagunoori/kbc-game-frontend/blob/main/public/kbc-game1.png)
-![Screenshot 2](https://github.com/rojanagunoori/kbc-game-frontend/blob/main/public/kbc-game2.png)
+![Screenshot 1](https://raw.githubusercontent.com/rojanagunoori/kbc-game-frontend/main/public/kbc-game1.png)
 
-![Screenshot 3](https://github.com/rojanagunoori/kbc-game-frontend/blob/main/public/kbc-game3.png)
+![Screenshot 2](https://raw.githubusercontent.com/rojanagunoori/kbc-game-frontend/main/public/kbc-game2.png)
+
+![Screenshot 3](https://raw.githubusercontent.com/rojanagunoori/kbc-game-frontend/main/public/kbc-game3.png)
 
 A real-time multiplayer quiz game inspired by _Kaun Banega Crorepati (KBC)_ built using **React**, **Node.js**, **Express**, and **Socket.IO**.
 

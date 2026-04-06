@@ -1,6 +1,7 @@
 # 🎮 KBC Quiz Game
 
-<video src="https://github.com/rojanagunoori/kbc-game-frontend/blob/main/public/kbc-game.mp4" controls="controls" style="max-width: 100%;">
+<video controls width="600">
+  <source src="https://raw.githubusercontent.com/rojanagunoori/kbc-game-frontend/main/public/kbc-game.mp4" type="video/mp4">
 </video>
 
 ![Screenshot 1](https://github.com/rojanagunoori/kbc-game-frontend/blob/main/public/kbc-game1.png)
